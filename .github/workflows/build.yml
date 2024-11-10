@@ -27,17 +27,12 @@ jobs:
     - name: Build Rust
       run: cargo build --release
       
-    - name: List build directory
-      run: |
-        ls -la target/release/
-      shell: bash
-      
     - name: Upload Rust artifacts
       uses: actions/upload-artifact@v3
       with:
         name: osu-beatmap-addtime-migrate-rust-${{ matrix.os }}
         path: |
-          target/release/osu_beatmap_addtime_migrate${{ matrix.os == 'windows-latest' && '.exe' || '' }}
+          target/release/osu-beatmap-addtime-migrate${{ matrix.os == 'windows-latest' && '.exe' || '' }}
 
   build-dotnet:
     name: Build .NET Project (${{ matrix.os }})
@@ -75,6 +70,11 @@ jobs:
       
     - name: Create Release Packages
       run: |
+        # List all directories and files
+        echo "Current directory contents:"
+        ls -la
+        echo "============================="
+        
         VERSION=${GITHUB_REF#refs/tags/}
         # Create Windows package
         mkdir -p release-package-windows
