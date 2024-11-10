@@ -32,8 +32,7 @@ jobs:
       with:
         name: osu-beatmap-addtime-migrate-rust-${{ matrix.os }}
         path: |
-          target/release/main.exe
-          target/release/main
+          target/release/osu-beatmap-addtime-migrate${{ matrix.os == 'windows-latest' && '.exe' || '' }}
 
   build-dotnet:
     name: Build .NET Project (${{ matrix.os }})
@@ -74,15 +73,15 @@ jobs:
         VERSION=${GITHUB_REF#refs/tags/}
         # Create Windows package
         mkdir -p release-package-windows
-        cp osu-beatmap-addtime-migrate-rust-windows-latest/main.exe release-package-windows/
+        cp osu-beatmap-addtime-migrate-rust-windows-latest/osu-beatmap-addtime-migrate.exe release-package-windows/
         cp -r osu-beatmap-addtime-migrate-dotnet-windows-latest/* release-package-windows/
         zip -r "osu-beatmap-addtime-migrate-${VERSION}-windows-x64.zip" release-package-windows/
         
         # Create Linux package
         mkdir -p release-package-linux
-        cp osu-beatmap-addtime-migrate-rust-ubuntu-latest/main release-package-linux/
+        cp osu-beatmap-addtime-migrate-rust-ubuntu-latest/osu-beatmap-addtime-migrate release-package-linux/
         cp -r osu-beatmap-addtime-migrate-dotnet-ubuntu-latest/* release-package-linux/
-        chmod +x release-package-linux/main
+        chmod +x release-package-linux/osu-beatmap-addtime-migrate
         chmod +x release-package-linux/OsuRealmWriter
         zip -r "osu-beatmap-addtime-migrate-${VERSION}-linux-x64.zip" release-package-linux/
       shell: bash
@@ -92,5 +91,5 @@ jobs:
       with:
         name: Release ${{ github.ref_name }}
         files: |
-          osu-beatmap-addtime-migrate-*-windows-x64.zip
-          osu-beatmap-addtime-migrate-*-linux-x64.zip
+          osu-beatmap-addtime-migrate-${{ github.ref_name }}-windows-x64.zip
+          osu-beatmap-addtime-migrate-${{ github.ref_name }}-linux-x64.zip
