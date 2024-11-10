@@ -1,0 +1,12 @@
+[package]
+name = "osu_beatmap_addtime_migrate"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+osu-db = "0.3.0"
+itertools = "0.13.0"
+rusqlite = "0.32.1"
+chrono = "0.4"
+serde = { version = "1.0", features = ["derive"] }
+toml = "0.8"

@@ -1,0 +1,7 @@
+/target
+/bin/
+/obj/
+/packages/
+/FodyWeavers*
+beatmap-hash-time.txt
+config.toml
