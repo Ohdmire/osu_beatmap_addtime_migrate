@@ -27,6 +27,14 @@ jobs:
     - name: Build Rust
       run: cargo build --release
       
+    - name: List Rust build output
+      shell: bash
+      run: |
+        echo "Checking target/release directory:"
+        ls -la
+        pwd
+        ls -la target/release/
+      
     - name: Upload Rust artifacts
       uses: actions/upload-artifact@v3
       with:
