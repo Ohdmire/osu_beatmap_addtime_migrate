@@ -43,7 +43,7 @@ impl Config {
         if cfg!(target_os = "windows") {
             // Windows 路径
             if let Ok(appdata) = env::var("APPDATA") {
-                return format!("{}/osu!", appdata);
+                return format!("{}\\Local\\osu!", appdata);
             }
         } else {
             // Linux/Unix 路径
@@ -58,7 +58,7 @@ impl Config {
         if cfg!(target_os = "windows") {
             // Windows 路径
             if let Ok(appdata) = env::var("APPDATA") {
-                return format!("{}/osu", appdata);
+                return format!("{}\\osu", appdata);
             }
         } else {
             // Linux/Unix 路径
