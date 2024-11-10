@@ -1,5 +1,5 @@
 [package]
-name = "osu_beatmap_addtime_migrate"
+name = "osu-beatmap-addtime-migrate"
 version = "0.1.0"
 edition = "2021"
 

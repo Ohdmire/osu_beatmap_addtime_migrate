@@ -252,18 +252,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1261fe7e33c73b354eab43b1273a57c8f967d0391e80353e51f764ac02cf6775"
 
 [[package]]
-name = "osu-db"
-version = "0.3.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "81551da2a88af2d4e6e6776def19894f5b17620b3e5ef78bcc9ea57f278b6f03"
-dependencies = [
- "chrono",
- "nom",
- "xz2",
-]
-
-[[package]]
-name = "osu_beatmap_addtime_migrate"
+name = "osu-beatmap-addtime-migrate"
 version = "0.1.0"
 dependencies = [
  "chrono",
@@ -272,6 +261,17 @@ dependencies = [
  "rusqlite",
  "serde",
  "toml",
+]
+
+[[package]]
+name = "osu-db"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "81551da2a88af2d4e6e6776def19894f5b17620b3e5ef78bcc9ea57f278b6f03"
+dependencies = [
+ "chrono",
+ "nom",
+ "xz2",
 ]
 
 [[package]]
