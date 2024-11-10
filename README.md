@@ -2,7 +2,7 @@
 快速把osu里添加谱面的日期写入到lazer
 
 ## 使用方法
-1. 运行`main.exe`生成`beatmap-hash-time.txt`
+1. 运行`osu-beatmap-addtime-migrate.exe`生成`beatmap-hash-time.txt`
 2. 运行`OsuRealmWriter.exe`将`beatmap-hash-time.txt`写入到lazer
 
 ## 编译
