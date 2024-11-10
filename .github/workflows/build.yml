@@ -67,13 +67,6 @@ jobs:
         path: |
           **/bin/Release/net8.0/${{ matrix.os == 'windows-latest' && 'win-x64' || 'linux-x64' }}/publish/*
 
-    - name: List .NET build output
-      shell: bash
-      run: |
-        echo "Checking bin/Release/net8.0 directory:"
-        ls -la bin/Release/net8.0/win-x64/publish/
-        ls -la bin/Release/net8.0/linux-x64/publish/
-
   create-release:
     name: Create Release
     needs: [build-rust, build-dotnet]
@@ -101,8 +94,6 @@ jobs:
         mkdir -p release-package-linux
         cp osu-beatmap-addtime-migrate-rust-ubuntu-latest/osu-beatmap-addtime-migrate release-package-linux/
         cp -r osu-beatmap-addtime-migrate-dotnet-ubuntu-latest/* release-package-linux/
-        chmod +x release-package-linux/osu-beatmap-addtime-migrate
-        chmod +x release-package-linux/OsuRealmWriter
         zip -r "osu-beatmap-addtime-migrate-${VERSION}-linux-x64.zip" release-package-linux/
       shell: bash
       
