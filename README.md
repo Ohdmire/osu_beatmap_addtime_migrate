@@ -1,0 +1,2 @@
+# osu_beatmap_addtime_migrate
+快速把osu里添加谱面的日期写入到lazer
