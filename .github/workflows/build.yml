@@ -2,9 +2,8 @@ name: Build
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    tags:
+      - 'v*'
 
 env:
   CARGO_TERM_COLOR: always
@@ -18,16 +17,16 @@ jobs:
         os: [windows-latest, ubuntu-latest]
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v3
     
     - name: Install Rust
-      uses: dtolnay/rust-toolchain@stable
+      uses: dtolnay/rust-toolchain@master
     
     - name: Build Rust
       run: cargo build --release
       
     - name: Upload Rust artifacts
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v3
       with:
         name: osu-beatmap-addtime-migrate-rust-${{ matrix.os }}
         path: |
@@ -42,18 +41,18 @@ jobs:
         os: [windows-latest, ubuntu-latest]
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v3
     
     - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '8.0.x'
         
     - name: Build .NET
-      run: dotnet publish --configuration Release --runtime ${{ matrix.os == 'windows-latest' && 'win-x64' || 'linux-x64' }} --self-contained true
+      run: dotnet publish osu_beatmap_addtime_migrate.sln --configuration Release --runtime ${{ matrix.os == 'windows-latest' && 'win-x64' || 'linux-x64' }} --self-contained true
       
     - name: Upload .NET artifacts
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v3
       with:
         name: osu-beatmap-addtime-migrate-dotnet-${{ matrix.os }}
         path: |
@@ -66,7 +65,7 @@ jobs:
 
     steps:
     - name: Download all artifacts
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v3
       
     - name: Create Release Packages
       run: |
