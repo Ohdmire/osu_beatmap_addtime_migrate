@@ -58,14 +58,13 @@ jobs:
         dotnet-version: '8.0.x'
         
     - name: Build .NET
-      run: dotnet publish osu_beatmap_addtime_migrate.sln --configuration Release --runtime ${{ matrix.os == 'windows-latest' && 'win-x64' || 'linux-x64' }} --self-contained true
+      run: dotnet publish osu_beatmap_addtime_migrate.sln --configuration Release --runtime ${{ matrix.os == 'windows-latest' && 'win-x64' || 'linux-x64' }} --self-contained true --output publish
       
     - name: Upload .NET artifacts
       uses: actions/upload-artifact@v3
       with:
         name: osu-beatmap-addtime-migrate-dotnet-${{ matrix.os }}
-        path: |
-          **/bin/Release/net8.0/${{ matrix.os == 'windows-latest' && 'win-x64' || 'linux-x64' }}/publish/*
+        path: publish/*
 
   create-release:
     name: Create Release
@@ -78,7 +77,6 @@ jobs:
       
     - name: Create Release Packages
       run: |
-        # List all directories and files
         echo "Current directory contents:"
         ls -la
         echo "============================="
