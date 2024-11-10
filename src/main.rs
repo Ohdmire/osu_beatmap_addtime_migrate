@@ -42,8 +42,8 @@ impl Config {
     fn get_osu_stable_dir() -> String {
         if cfg!(target_os = "windows") {
             // Windows 路径
-            if let Ok(appdata) = env::var("APPDATA") {
-                return format!("{}/osu!", appdata);
+            if let Ok(localappdata) = env::var("LOCALAPPDATA") {
+                return format!("{}\\osu!", localappdata);
             }
         } else {
             // Linux/Unix 路径
@@ -58,7 +58,7 @@ impl Config {
         if cfg!(target_os = "windows") {
             // Windows 路径
             if let Ok(appdata) = env::var("APPDATA") {
-                return format!("{}/osu", appdata);
+                return format!("{}\\osu", appdata);
             }
         } else {
             // Linux/Unix 路径
