@@ -65,7 +65,7 @@ class Program
         
         try
         {
-            const int LazerSchemaVersion = 42;
+            const int LazerSchemaVersion = 46;
             const string hashTimeFile = "beatmap-hash-time.txt";
             
             string originalDb = GetLazerDbPath();
